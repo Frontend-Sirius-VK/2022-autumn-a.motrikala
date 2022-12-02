@@ -1,0 +1,49 @@
+.header{
+    display: flex;
+    justify-content: center;
+}
+
+.header__main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 44px;
+    margin-bottom: 10px;
+    margin-top: 8px;
+    width: 758px;
+}
+
+img{
+    height: 24px;
+}
+
+.button-div{
+    display: flex;
+    align-items: center;
+}
+
+.buttons{
+    display: flex;
+    align-items: center;
+    padding: 10px 16px 10px 12px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    background-color: transparent;
+    font-size: 14px;
+}
+
+.buttons:last-child{
+    padding-right: 0;
+}
+
+.icon-buttons{
+    height: 20px;
+}
+
+.text-buttons{
+    margin-left: 6px;
+}

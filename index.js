@@ -1,5 +1,3 @@
-import {HelloWorld} from './components/hello-world/hello-world.js';
+import {router} from './routing/Router.js';
 
-const root = document.querySelector('#root');
-const helloWorld = new HelloWorld(root);
-helloWorld.render();
+router.start();

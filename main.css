@@ -1,0 +1,7 @@
+@import './components/header/header.css';
+@import './components/posts/posts.css';
+
+body {
+    background-color: #f3f3f2;
+    font-family: Arial, sans-serif;
+}

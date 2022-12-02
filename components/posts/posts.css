@@ -1,0 +1,54 @@
+.posts {
+    display: flex;
+    justify-content: center;
+}
+
+.container_post {
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    border-radius: 16px;
+    margin-bottom: 8px;
+    width: 758px;
+}
+
+.info-div {
+    margin: 12px 0 6px;
+    padding-left: 18px;
+}
+
+.author {
+    font-size: 13px;
+    font-weight: bold;
+    padding-bottom: 2px;
+}
+
+.subscribers {
+    font-size: 13px;
+    line-height: 16px;
+    color: rgba(0,0,0,.45);
+}
+
+.header-text {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: bold;
+    margin-top: 4px;
+    padding: 0 18px 2px;
+}
+
+.content-text {
+    padding: 2px 18px 0;
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.published {
+    display: flex;
+    align-items: flex-end;
+    padding: 4px 18px 12px;
+    font-size: 14px;
+    line-height: 18px;
+    color: rgba(0,0,0,.45);
+}
+
