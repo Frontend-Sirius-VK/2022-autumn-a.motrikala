@@ -1,13 +1,9 @@
-// import EventBus from "../../utils/eventBus.js";
-
-
-export class Posts {
+export class PostCard {
     constructor(parent) {
         this.parent = parent;
-        // EventBus.on('posts:got-info', data);
     }
 
-    render(container, author_data, subscribes_data, header_data, content_data, published_data) {
+    render(author_data, subscribes_data, header_data, content_data, published_data) {
         const cards = document.createElement('div');
         cards.classList.add('container_post');
 
@@ -20,10 +16,7 @@ export class Posts {
         info_text.classList.add('info-div');
 
         author_post.textContent = author_data;
-        subscribers_post.textContent = subscribes_data;
-
-        // author_post.textContent = 'Российская газета';
-        // subscribers_post.textContent = 478400 + ' подписчиков';
+        subscribers_post.textContent = subscribes_data + ' подписчиков';
 
         info_text.append(author_post, subscribers_post);
 
@@ -33,8 +26,6 @@ export class Posts {
 
         header_text.textContent = header_data;
 
-        // header_text.textContent = 'Независимый';
-
         header.append(header_text);
 
         const main_text = document.createElement('div');
@@ -43,8 +34,6 @@ export class Posts {
 
         content.textContent = content_data;
 
-        // content.textContent = 'Онлайн-кинотеатр START объявил о завершении съёмок политической комедии Независимый. Восьмисерийный проект расскажет о борьбе маленького человека с системой и искушении властью. Главную роль сыграл Теймураз Тания. Действие разворачивается в Абхазии. Чтобы предотвратить произвол правительства, сотрудник местного МЧС решает стать кандидатом на пост президента республики.';
-
         main_text.append(content);
 
         const published = document.createElement('div');
@@ -52,11 +41,10 @@ export class Posts {
         published_text.classList.add('published');
 
         published_text.textContent = published_data;
-        // published_text.textContent = '12 часов назад';
 
         published.append(published_text);
 
         cards.append(info_text, header, main_text, published);
-        container.appendChild(cards);
+        this.parent.append(cards);
     }
 }

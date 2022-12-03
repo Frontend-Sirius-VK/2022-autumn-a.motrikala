@@ -1,5 +1,5 @@
 @import './components/header/header.css';
-@import './components/posts/posts.css';
+@import 'components/postCard/posts.css';
 
 body {
     background-color: #f3f3f2;
