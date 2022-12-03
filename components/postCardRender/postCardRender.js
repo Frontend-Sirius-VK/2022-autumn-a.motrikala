@@ -10,7 +10,7 @@ export class PostCardRender {
         this.container = document.createElement('div');
         data.forEach((post) =>{
            const postCard = new PostCard(this.container);
-           postCard.render(post.author, post.subscribers, post.header, post.content, post.published);
+           postCard.render(post.author, post.subscribers, post.header, post.post_url, post.content, post.img_url, post.published);
         });
         this.parent.append(this.container);
     }
