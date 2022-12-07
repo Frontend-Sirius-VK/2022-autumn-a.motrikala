@@ -8,9 +8,10 @@ export class PostCardRender {
 
     render(data) {
         this.container = document.createElement('div');
-        data.forEach((post) =>{
+        data.forEach((post) => {
            const postCard = new PostCard(this.container);
-           postCard.render(post.author, post.subscribers, post.header, post.post_url, post.content, post.img_url, post.published);
+           // const {author, subscribers, header, post_url, content, img_url, published} = post;
+           postCard.render(post);
         });
         this.parent.append(this.container);
     }

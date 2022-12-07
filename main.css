@@ -1,7 +1,9 @@
 @import './components/header/header.css';
-@import 'components/postCard/posts.css';
+@import './components/header/colors.css';
+@import './components/postCard/posts.css';
+
 
 body {
-    background-color: #f3f3f2;
+    background-color: var(--body-background);
     font-family: Arial, sans-serif;
 }

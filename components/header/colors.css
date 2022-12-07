@@ -1,0 +1,8 @@
+:root {
+    --body-background: #f3f3f2;
+    --button-color: black;
+    --button-background: transparent;
+    --post-card-background: #FFF;
+    --post-attributes-color: rgba(0, 0, 0, .45);
+    --content-text-color: black;
+}

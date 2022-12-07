@@ -13,12 +13,12 @@ export class Router {
         const {target} = event;
         const {tagName} = target;
 
-        // if (tagName === 'A') {
-        //
-        //     if (target.href !== undefined) {
-        //         this.go(target.href);
-        //     }
-        // }
+        if (tagName === 'A') {
+
+            if (target.href !== undefined) {
+                this.go(target.href);
+            }
+        }
     }
 
     go(pathname) {

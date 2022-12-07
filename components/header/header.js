@@ -4,63 +4,63 @@ export class Header {
     }
 
     render(container) {
-        const header = document.createElement('div');
-        header.classList.add('header__main');
+        const headerContainer = document.createElement('div');
+        headerContainer.classList.add('header');
 
-        const main_icon = document.createElement('img');
-        main_icon.src = './components/header/Dzen_logo.png';
-        main_icon.alt = 'Dzen_icon';
+        const iconLogo = document.createElement('img');
+        iconLogo.classList.add('header__img');
+        iconLogo.src = './components/assets/dzen_logo.png';
+        iconLogo.alt = 'Логотип Дзена';
 
-        const buttons = document.createElement('div');
-        buttons.classList.add('button-div');
+        const buttonsContainer = document.createElement('div');
+        buttonsContainer.classList.add('header-controls');
 
-        const button_1 = document.createElement('div');
-        const icon_create = document.createElement('img');
-        icon_create.src = './components/header/icon-create.png';
-        icon_create.alt = 'create_icon';
-        icon_create.classList.add('icon-buttons');
+        const buttonCreateContainer = document.createElement('div');
+        buttonCreateContainer.classList.add('header-controls-create-button');
 
-        const button_create = document.createElement('div')
-        button_create.innerHTML += 'Создать';
-        button_create.classList.add('text-buttons');
+        const iconCreate = document.createElement('img');
+        iconCreate.src = './components/assets/icon-create.png';
+        iconCreate.alt = 'Иконка создания поста';
+        iconCreate.classList.add('header-controls-create-button__img');
 
-        button_1.classList.add('buttons');
-        button_1.append(icon_create);
-        button_1.append(button_create)
-        buttons.append(button_1);
+        const buttonCreate = document.createElement('div')
+        buttonCreate.innerHTML += 'Создать';
+        buttonCreate.classList.add('header-controls-create-button__content');
 
-        const button_2 = document.createElement('div');
-        const icon_video = document.createElement('img');
-        icon_video.src = './components/header/icon-play.png';
-        icon_video.alt = 'video_icon';
-        icon_video.classList.add('icon-buttons');
+        buttonCreateContainer.append(iconCreate, buttonCreate);
 
-        const button_video = document.createElement('a');
-        button_video.innerHTML += 'Видео';
-        button_video.classList.add('text-buttons');
+        const buttonVideoContainer = document.createElement('div');
+        buttonVideoContainer.classList.add('header-controls-video-button');
 
-        button_2.classList.add('buttons');
-        button_2.append(icon_video);
-        button_2.append(button_video)
-        buttons.append(button_2);
+        const iconVideo = document.createElement('img');
+        iconVideo.src = './components/assets/icon-play.png';
+        iconVideo.alt = 'Иконка Дзен видео';
+        iconVideo.classList.add('header-controls-video-button__img');
 
-        const button_3 = document.createElement('div');
-        const icon_search = document.createElement('img');
-        icon_search.src = './components/header/icon-search.png';
-        icon_search.alt = 'search_icon';
-        icon_search.classList.add('icon-buttons');
+        const buttonVideo = document.createElement('a');
+        buttonVideo.innerHTML += 'Видео';
+        buttonVideo.classList.add('header-controls-video-button__content');
 
-        const button_search = document.createElement('a');
-        button_search.innerHTML += 'Поиск в Дзене';
-        button_search.classList.add('text-buttons');
+        buttonVideoContainer.append(iconVideo, buttonVideo);
 
-        button_3.classList.add('buttons');
-        button_3.append(icon_search);
-        button_3.append(button_search)
-        buttons.append(button_3);
+        const buttonSearchContainer = document.createElement('div');
+        buttonSearchContainer.classList.add('header-controls-search-button');
 
-        header.append(main_icon, buttons);
-        container.appendChild(header);
+        const iconSearch = document.createElement('img');
+        iconSearch.src = './components/assets/icon-search.png';
+        iconSearch.alt = 'Иконка поиска';
+        iconSearch.classList.add('header-controls-search-button__img');
+
+        const buttonSearch = document.createElement('a');
+        buttonSearch.innerHTML += 'Поиск в Дзене';
+        buttonSearch.classList.add('header-controls-search-button__content');
+
+        buttonSearchContainer.append(iconSearch, buttonSearch);
+
+        buttonsContainer.append(buttonCreateContainer, buttonVideoContainer, buttonSearchContainer);
+
+        headerContainer.append(iconLogo, buttonsContainer);
+        container.appendChild(headerContainer);
     }
 }
 

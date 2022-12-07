@@ -16,18 +16,18 @@ export class MainView {
         this.container = document.createElement('div');
         this.container.classList.add('page-container');
 
-        const header_container = document.createElement('div');
-        header_container.classList.add('header');
-        this.header = new Header(header_container);
+        const headerContainer = document.createElement('div');
+        headerContainer.classList.add('page-header');
+        this.header = new Header(headerContainer);
 
-        const post_container = document.createElement('div');
-        post_container.classList.add('posts');
-        this.posts = new PostCardRender(post_container);
+        const postContainer = document.createElement('div');
+        postContainer.classList.add('posts');
+        this.posts = new PostCardRender(postContainer);
 
-        this.container.append(header_container, post_container);
+        this.container.append(headerContainer, postContainer);
         root.append(this.container);
 
-        this.header.render(header_container);
+        this.header.render(headerContainer);
     }
 
     update(data = {}) {

@@ -1,49 +1,49 @@
-.header{
+.page-header {
     display: flex;
     justify-content: center;
 }
 
-.header__main{
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 44px;
+    height: 45px;
     margin-bottom: 10px;
     margin-top: 8px;
-    width: 758px;
+    width: 750px;
 }
 
-img{
+.header__img {
     height: 24px;
 }
 
-.button-div{
+.header-controls {
     display: flex;
     align-items: center;
 }
 
-.buttons{
+.header-controls-create-button, .header-controls-video-button, .header-controls-search-button {
     display: flex;
     align-items: center;
     padding: 10px 16px 10px 12px;
     cursor: pointer;
     text-decoration: none;
-    color: #000;
+    color: var(--button-color);
     border: none;
     border-radius: 8px;
     outline: none;
-    background-color: transparent;
+    background-color: var(--button-background);
     font-size: 14px;
 }
 
-.buttons:last-child{
+.header-controls-create-button, .header-controls-video-button, .header-controls-search-button:last-child {
     padding-right: 0;
 }
 
-.icon-buttons{
+.header-controls-create-button__img, .header-controls-video-button__img, .header-controls-search-button__img {
     height: 20px;
 }
 
-.text-buttons{
+.header-controls-create-button__content, .header-controls-video-button__content, .header-controls-search-button__content{
     margin-left: 6px;
 }
