@@ -1,0 +1,9 @@
+@import './components/header/header.css';
+@import './components/header/colors.css';
+@import './components/postCard/posts.css';
+
+
+body {
+    background-color: var(--body-background);
+    font-family: Arial, sans-serif;
+}
