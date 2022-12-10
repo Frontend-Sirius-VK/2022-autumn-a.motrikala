@@ -5,4 +5,6 @@
     --post-card-background: #FFF;
     --post-attributes-color: rgba(0, 0, 0, .45);
     --content-text-color: black;
+    --error-status-color: rgb(66, 76, 101);
+    --error-text-color: rgba(66, 76, 101, .5);
 }

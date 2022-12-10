@@ -1,13 +1,27 @@
 import {PostCard} from '../postCard/postCard.js';
+import EventBus from '../../utils/eventBus.js';
+import {Loader} from '../loader/loader.js';
 
 export class PostCardRender {
     constructor(parent) {
         this.parent = parent;
-        this.container = null;
+
+        const container = document.createElement('div');
+        this.container = container;
+        this.container.classList.add('posts')
+
+        EventBus.on('postCard:loading', this.render.bind(this));
     }
 
     render(data) {
-        this.container = document.createElement('div');
+        if (!data) {
+            this.container.innerHTML = '';
+            const loader = new Loader(this.container);
+            loader.render();
+            this.parent.prepend(this.container);
+            return;
+        }
+
         data.forEach((post) => {
            const postCard = new PostCard(this.container);
            postCard.render(post);

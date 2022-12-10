@@ -1,5 +1,6 @@
 import {MainView} from '../views/MainView.js';
 import {PostModel} from '../models/postModel.js';
+import EventBus from "../utils/eventBus.js";
 
 export class MainController {
     process() {
@@ -7,6 +8,7 @@ export class MainController {
         view.render();
 
         const postCards = new PostModel();
+        EventBus.emit('postCard:loading');
         postCards.fetchData();
     }
 }

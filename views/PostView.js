@@ -1,21 +1,22 @@
 import {Header} from '../components/header/header.js';
-import {PostCardRender} from '../components/postCardRender/postCardRender.js';
+import {onePostCard} from '../components/onePostCard/onePostCard.js';
 import EventBus from '../utils/eventBus.js';
 
-export class MainView {
+export class PostView {
     constructor() {
         this.container = null;
         this.header = null;
-        this.posts = null;
+        this.post = null;
 
-        EventBus.on('postCard:got-info', this.update.bind(this));
-        EventBus.on('postCard:not-found', this.errorUpdate.bind(this));
-        EventBus.on('postCard:bad-request', this.errorUpdate.bind(this));
-        EventBus.on('postCard:server-error', this.errorUpdate.bind(this));
+        EventBus.on('onePostCard:got-info', this.update.bind(this));
+        EventBus.on('onePostCard:not-found', this.errorUpdate.bind(this));
+        EventBus.on('onePostCard:bad-request', this.errorUpdate.bind(this));
+        EventBus.on('onePostCard:server-error', this.errorUpdate.bind(this));
     }
 
     render() {
         const root = document.querySelector('#root');
+        root.innerHTML = '';
         this.container = document.createElement('div');
         this.container.classList.add('page-container');
 
@@ -24,20 +25,22 @@ export class MainView {
         this.header = new Header(headerContainer);
 
         const postContainer = document.createElement('div');
-        postContainer.classList.add('page-posts');
-        this.posts = new PostCardRender(postContainer);
+        postContainer.classList.add('post');
+        this.post = new onePostCard(postContainer);
 
         this.container.append(headerContainer, postContainer);
+        this.container.append(postContainer);
         root.append(this.container);
 
         this.header.render(headerContainer);
     }
 
     update(data = {}) {
-        if (!data || !Array.isArray(data) || data.length === 0) {
+        if (!data || !Object.keys(data)) {
             return;
         }
-        this.posts.update(data);
+        this.post.innerHTML = '';
+        this.post.update(data);
     }
 
     renderError(data) {
@@ -62,8 +65,8 @@ export class MainView {
     }
 
     errorUpdate(data) {
-        if (this.posts) {
-            this.posts.innerHTML = '';
+        if (this.post) {
+            this.post.innerHTML = '';
         }
         this.renderError(data);
     }
