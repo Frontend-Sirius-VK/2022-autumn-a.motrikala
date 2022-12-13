@@ -5,10 +5,8 @@ import {Loader} from '../loader/loader.js';
 export class PostCardRender {
     constructor(parent) {
         this.parent = parent;
-
-        const container = document.createElement('div');
-        this.container = container;
-        this.container.classList.add('posts')
+        this.container = document.createElement('div');
+        this.container.classList.add('posts');
 
         EventBus.on('postCard:loading', this.render.bind(this));
     }
@@ -23,8 +21,8 @@ export class PostCardRender {
         }
 
         data.forEach((post) => {
-           const postCard = new PostCard(this.container);
-           postCard.render(post);
+            const postCard = new PostCard(this.container);
+            postCard.render(post);
         });
         this.parent.append(this.container);
     }

@@ -27,7 +27,7 @@ export class Header {
         iconCreate.alt = 'Иконка создания поста';
         iconCreate.classList.add('header-controls-create-button__img');
 
-        const buttonCreate = document.createElement('a')
+        const buttonCreate = document.createElement('a');
         buttonCreate.innerHTML += 'Создать';
         buttonCreate.href = CREATE_POST;
         buttonCreate.classList.add('header-controls-create-button__content');

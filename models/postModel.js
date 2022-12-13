@@ -35,6 +35,6 @@ export class PostModel {
 
             .then((data) => {
                 EventBus.emit('postCard:got-info', data);
-        })
+            });
     }
 }

@@ -1,4 +1,4 @@
-import {MainController} from '../controllers/MainController.js'
+import {MainController} from '../controllers/MainController.js';
 import {PostController} from '../controllers/PostController.js';
 
 const routes = [
@@ -10,7 +10,7 @@ const routes = [
         path: `^/post/(\\d+)`,
         controller: PostController
     },
-]
+];
 
 export class Router {
     constructor() {
