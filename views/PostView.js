@@ -17,19 +17,15 @@ export class PostView {
     render() {
         const root = document.querySelector('#root');
         root.innerHTML = '';
-        this.container = document.createElement('div');
-        this.container.classList.add('page-container');
+        this.container = document.querySelector('#page-container');
 
-        const headerContainer = document.createElement('div');
-        headerContainer.classList.add('page-header');
+        const headerContainer = document.querySelector('#page-header');
         this.header = new Header(headerContainer);
 
-        const postContainer = document.createElement('div');
-        postContainer.classList.add('post');
+        const postContainer = document.querySelector('#page-posts');
         this.post = new onePostCard(postContainer);
 
         this.container.append(headerContainer, postContainer);
-        this.container.append(postContainer);
         root.append(this.container);
 
         this.header.render(headerContainer);
@@ -45,23 +41,18 @@ export class PostView {
 
     renderError(data) {
         const root = document.querySelector('#root');
-        this.container = document.createElement('div');
+        this.container = document.querySelector("#error");
 
-        const errorContainer = document.createElement('div');
-        errorContainer.classList.add('error-container__div');
+        const errorStatus = data[0];
+        const errorText = data[1];
 
-        const errorStatus = document.createElement('p');
-        errorStatus.classList.add('error-container-error-status__p');
-        errorStatus.textContent = data[0];
+        const context = {errorStatus, errorText};
 
-        const errorText = document.createElement('p');
-        errorText.classList.add('error-container-error-text__p');
-        errorText.textContent = data[1];
+        const template = Handlebars.templates.error;
+        const html = template(context);
 
-        errorContainer.append(errorStatus, errorText);
-
-        this.container.append(errorContainer);
         root.append(this.container);
+        this.container.innerHTML += html;
     }
 
     errorUpdate(data) {

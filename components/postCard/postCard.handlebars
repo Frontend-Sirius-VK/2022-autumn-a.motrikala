@@ -1,0 +1,29 @@
+<div id="cards" class="cards">
+    <div class="cards-info">
+        <div class="card-info__author">
+            {{author}}
+        </div>
+        <div class="cards-info__subscribers">
+            {{subscribers}} подписчиков
+        </div>
+    </div>
+    <div class="cards-picture">
+        <img src={{imgUrl}} class="cards-picture__content">
+    </div>
+    <div class="cards-title">
+        <a href="/api/post/{{id}}" class="card-title__content">
+            {{title}}
+        </a>
+    </div>
+    <div class="cards-text">
+        <a href={{postUrl}} class="cards-text__content">
+            {{contentData}}
+        </a>
+    </div>
+    <div class="cards-published">
+        <div class="cards-published__content">
+            {{published}}
+        </div>
+    </div>
+
+</div>

@@ -6,6 +6,18 @@ export class MainView {
     constructor() {
         this.container = null;
         this.header = null;
+        this.headerList = [{
+            alt: 'Логотип Дзена'
+        }, {
+            alt: 'Иконка создания поста',
+            text: 'Создать'
+        }, {
+            alt: 'Иконка Дзен видео',
+            text: 'Видео'
+        }, {
+            alt: 'Иконка поиска',
+            text: 'Поиск в Дзене'
+        }];
         this.posts = null;
 
         EventBus.on('postCard:got-info', this.update.bind(this));
@@ -16,15 +28,17 @@ export class MainView {
 
     render() {
         const root = document.querySelector('#root');
-        this.container = document.createElement('div');
-        this.container.classList.add('page-container');
+        this.container = document.querySelector('#page-container');
 
-        const headerContainer = document.createElement('div');
-        headerContainer.classList.add('page-header');
-        this.header = new Header(headerContainer);
+        const headerContainer = document.querySelector('#page-header');
+        // this.header = new Header(headerContainer);
 
-        const postContainer = document.createElement('div');
-        postContainer.classList.add('page-posts');
+        this.headerList.forEach((element) => {
+            const header = new Header(headerContainer, element.alt, element.text);
+            header.render();
+        });
+
+        const postContainer = document.querySelector('#page-posts');
         this.posts = new PostCardRender(postContainer);
 
         this.container.append(headerContainer, postContainer);
@@ -42,23 +56,19 @@ export class MainView {
 
     renderError(data) {
         const root = document.querySelector('#root');
-        this.container = document.createElement('div');
+        this.container = document.querySelector("#error");
 
-        const errorContainer = document.createElement('div');
-        errorContainer.classList.add('error-container__div');
+        const errorStatus = data[0];
+        const errorText = data[1];
 
-        const errorStatus = document.createElement('p');
-        errorStatus.classList.add('error-container-error-status__p');
-        errorStatus.textContent = data[0];
+        const context = {errorStatus, errorText};
 
-        const errorText = document.createElement('p');
-        errorText.classList.add('error-container-error-text__p');
-        errorText.textContent = data[1];
+        const template = Handlebars.templates.error;
+        const html = template(context);
 
-        errorContainer.append(errorStatus, errorText);
-
-        this.container.append(errorContainer);
         root.append(this.container);
+
+        this.container.innerHTML += html;
     }
 
     errorUpdate(data) {

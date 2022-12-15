@@ -11,7 +11,7 @@ export class onePostModel {
     }
 
     fetchDataById(id) {
-        fetch(`/getPostById/${id}`)
+        fetch(`/api/getPostById/${id}`)
             .then((response) => {
                 const {status} = response;
 

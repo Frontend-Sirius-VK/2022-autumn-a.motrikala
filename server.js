@@ -18,13 +18,13 @@ app.use(
     })
 )
 
-app.get('/', async (req,res) => {
-    res.sendFile(path.join(__dirname, '.', 'index.html'));
-});
+// app.get('/', async (req,res) => {
+//     res.sendFile(path.join(__dirname, '.', 'index.html'));
+// });
 
-app.get('/post/:id', async (req,res) => {
-    res.sendFile(path.join(__dirname, '.', 'index.html'));
-});
+// app.get('/api/post/:id', async (req,res) => {
+//     res.sendFile(path.join(__dirname, '.', 'index.html'));
+// });
 
 app.get('/login', (req,res) => {
     // TODO
@@ -34,30 +34,30 @@ app.listen(port, function() {
     console.log(`Server listening port ${port}`);
 });
 
-app.get('/posts', async (req,res) => {
+app.get('/api/posts', async (req,res) => {
     const result = await db.getPost();
     res.json(result);
 });
 
-app.get('/getPostById/:id', async (req,res) => {
+app.get('/api/getPostById/:id', async (req,res) => {
     const id = req.params.id;
     const result = await db.getPostById(id);
     res.json(result);
 });
 
-app.post('/create/post', async (req, res) => {
+app.post('/api/create/post', async (req, res) => {
     const { author, subscribers, title, postUrl, contentData, imgUrl, published } = req.body;
     const id = await db.createPost(author, subscribers, title, postUrl, contentData, imgUrl, published);
     res.json({id})
 })
 
-app.put('/update/post/:id', async (req, res) => {
+app.put('/api/update/post/:id', async (req, res) => {
     const { id, author, subscribers, title, postUrl, contentData, imgUrl, published } = req.body;
     const result = await db.updatePost(id, author, subscribers, title, postUrl, contentData, imgUrl, published);
     res.json({result});
 })
 
-app.delete('/delete/post/:id', async (req, res) => {
+app.delete('/api/delete/post/:id', async (req, res) => {
     const { id } = req.body;
     const result = await db.deletePost(id);
     res.json({result});

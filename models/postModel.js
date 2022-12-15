@@ -11,7 +11,7 @@ export class PostModel {
     }
 
     fetchData() {
-        fetch('/posts')
+        fetch('/api/posts')
             .then((response) => {
                 const {status} = response;
 
