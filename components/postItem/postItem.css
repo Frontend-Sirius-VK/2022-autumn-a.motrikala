@@ -28,7 +28,7 @@
     color: var(--content-text-color);
 }
 
-.card-text{
+.card-text {
     padding: 20px 0 15px 0;
 }
 
@@ -64,5 +64,25 @@
 @media (max-width: 1024px) {
     .card {
         width: 100vw;
+    }
+
+    .card-info {
+        padding: 1.5em 2em;
+    }
+
+    .card-title {
+        padding: 40px 2em 15px 2em;
+    }
+
+    .card-text {
+        padding: 0 2em;
+    }
+
+    .card-picture {
+        padding: 1em 2em;
+    }
+
+    .card-published {
+        padding: 0 2em;
     }
 }

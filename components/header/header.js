@@ -20,47 +20,50 @@ export class Header {
         buttonsContainer.classList.add('header-controls');
 
         const buttonCreateContainer = document.createElement('div');
-        buttonCreateContainer.classList.add('header-controls-create-button');
+        buttonCreateContainer.classList.add('header-controls-button');
 
         const iconCreate = document.createElement('img');
         iconCreate.src = '../components/assets/icon-create.png';
         iconCreate.alt = 'Иконка создания поста';
-        iconCreate.classList.add('header-controls-create-button__img');
+        iconCreate.classList.add('header-controls-button__img');
 
         const buttonCreate = document.createElement('a')
         buttonCreate.innerHTML += 'Создать';
         buttonCreate.href = CREATE_POST;
-        buttonCreate.classList.add('header-controls-create-button__content');
+        buttonCreate.target = '_blank';
+        buttonCreate.classList.add('header-controls-button__content');
 
         buttonCreateContainer.append(iconCreate, buttonCreate);
 
         const buttonVideoContainer = document.createElement('div');
-        buttonVideoContainer.classList.add('header-controls-video-button');
+        buttonVideoContainer.classList.add('header-controls-button');
 
         const iconVideo = document.createElement('img');
         iconVideo.src = '../components/assets/icon-play.png';
         iconVideo.alt = 'Иконка Дзен видео';
-        iconVideo.classList.add('header-controls-video-button__img');
+        iconVideo.classList.add('header-controls-button__img');
 
         const buttonVideo = document.createElement('a');
         buttonVideo.innerHTML += 'Видео';
         buttonVideo.href = VIDEO;
-        buttonVideo.classList.add('header-controls-video-button__content');
+        buttonVideo.target = '_blank';
+        buttonVideo.classList.add('header-controls-button__content');
 
         buttonVideoContainer.append(iconVideo, buttonVideo);
 
         const buttonSearchContainer = document.createElement('div');
-        buttonSearchContainer.classList.add('header-controls-search-button');
+        buttonSearchContainer.classList.add('header-controls-button');
 
         const iconSearch = document.createElement('img');
         iconSearch.src = '../components/assets/icon-search.png';
         iconSearch.alt = 'Иконка поиска';
-        iconSearch.classList.add('header-controls-search-button__img');
+        iconSearch.classList.add('header-controls-button__img');
 
         const buttonSearch = document.createElement('a');
         buttonSearch.innerHTML += 'Поиск в Дзене';
         buttonSearch.href = SEARCH;
-        buttonSearch.classList.add('header-controls-search-button__content');
+        buttonSearch.target = '_blank';
+        buttonSearch.classList.add('header-controls-button__content');
 
         buttonSearchContainer.append(iconSearch, buttonSearch);
 

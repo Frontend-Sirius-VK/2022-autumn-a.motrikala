@@ -26,7 +26,7 @@ export class PostCard {
         headerText.classList.add('cards-title__content');
 
         headerText.textContent = title;
-        headerText.href = `/post/${id}`;
+        headerText.href = `/posts/${id}`;
 
         headerContainer.append(headerText);
 
@@ -38,6 +38,7 @@ export class PostCard {
 
         content.textContent = contentData;
         content.href = postUrl;
+        content.target = '_blank';
 
         mainTextContainer.append(content);
 

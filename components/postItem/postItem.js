@@ -1,15 +1,13 @@
 import EventBus from '../../utils/eventBus.js';
 import {Loader} from '../loader/loader.js';
 
-export class onePostCard {
+export class postItem {
     constructor(parent) {
         this.parent = parent;
-
-        const container = document.createElement('div');
-        this.container = container;
+        this.container = document.createElement('div');
         this.container.classList.add('card');
 
-        EventBus.on('onePostCard:loading', this.update.bind(this));
+        EventBus.on('postItem:loading', this.update.bind(this));
     }
     render(data) {
         if (!data) {
@@ -57,6 +55,7 @@ export class onePostCard {
 
         content.textContent = contentData;
         content.href = postUrl;
+        content.target = '_blank';
 
         mainTextContainer.append(content);
 

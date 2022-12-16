@@ -7,15 +7,14 @@ export class MainView {
         this.container = null;
         this.header = null;
         this.posts = null;
+        this.root = document.querySelector('#root');
 
         EventBus.on('postCard:got-info', this.update.bind(this));
-        EventBus.on('postCard:not-found', this.errorUpdate.bind(this));
-        EventBus.on('postCard:bad-request', this.errorUpdate.bind(this));
-        EventBus.on('postCard:server-error', this.errorUpdate.bind(this));
+        EventBus.on('postCard:backend-error', this.renderError.bind(this));
     }
 
     render() {
-        const root = document.querySelector('#root');
+        this.root.innerHTML = '';
         this.container = document.createElement('div');
         this.container.classList.add('page-container');
 
@@ -28,7 +27,7 @@ export class MainView {
         this.posts = new PostCardRender(postContainer);
 
         this.container.append(headerContainer, postContainer);
-        root.append(this.container);
+        this.root.append(this.container);
 
         this.header.render(headerContainer);
     }
@@ -41,7 +40,9 @@ export class MainView {
     }
 
     renderError(data) {
-        const root = document.querySelector('#root');
+        const card = document.querySelector('.posts');
+        card.innerHTML = '';
+        this.posts.innerHTML = '';
         this.container = document.createElement('div');
 
         const errorContainer = document.createElement('div');
@@ -49,22 +50,15 @@ export class MainView {
 
         const errorStatus = document.createElement('p');
         errorStatus.classList.add('error-container-error-status__p');
-        errorStatus.textContent = data[0];
+        errorStatus.textContent = data.title;
 
         const errorText = document.createElement('p');
         errorText.classList.add('error-container-error-text__p');
-        errorText.textContent = data[1];
+        errorText.textContent = data.description;
 
         errorContainer.append(errorStatus, errorText);
 
         this.container.append(errorContainer);
-        root.append(this.container);
-    }
-
-    errorUpdate(data) {
-        if (this.posts) {
-            this.posts.innerHTML = '';
-        }
-        this.renderError(data);
+        this.root.append(this.container);
     }
 }

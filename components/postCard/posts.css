@@ -85,10 +85,22 @@
 
     .cards-info {
         margin: 1.5em 0 1em;
+        padding: 0 2em;
+    }
+
+    .cards-title {
+        padding: 0 2em;
+    }
+
+    .cards-text {
+        padding: 0 2em;
+    }
+
+    .cards-picture {
+        padding: 0 2em;
     }
 
     .cards-published {
-        padding-left: 18px;
-        padding-bottom: 1.5em;
+        padding: 1.5em 2em;
     }
 }

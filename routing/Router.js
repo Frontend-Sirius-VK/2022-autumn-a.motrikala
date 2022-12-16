@@ -7,7 +7,7 @@ const routes = [
         controller: MainController
     },
     {
-        path: `^/post/(\\d+)`,
+        path: `^/posts/(\\d+)`,
         controller: PostController
     },
 ]
@@ -34,35 +34,34 @@ export class Router {
         this.invokeController();
     }
 
-    getId() {
-        const pathParser = window.location.pathname.split('/');
-        let id;
-        if (pathParser[1] === 'post') {
-            id = pathParser[2];
-        }
-        return id;
-    }
-
     invokeController() {
-        const id = this.getId();
-        const pathname = window.location.pathname;
+        let id;
+        const {pathname} = window.location;
+        const regexId = `^/posts/(\\d+)`;
+        if (pathname.match(regexId)) {
+            id = pathname.match(regexId)[1];
+        }
+
         const result = routes.find((route) => {
             const regex = new RegExp(route.path);
             const matches = pathname.match(regex);
-            return matches;
+            return Boolean(matches);
         });
-
-        if (!result) {
-            console.log('Не найдено');
-        }
 
         const ControllerClass = result.controller;
         const controller = new ControllerClass();
-        controller.process(id);
+
+        if (ControllerClass === PostController) {
+            controller.process(id);
+        }
+        else {
+            controller.process();
+        }
     }
 
     start() {
         document.addEventListener('click', this.onDocumentClick);
+        window.addEventListener('popstate', this.invokeController);
         this.invokeController();
     }
 
