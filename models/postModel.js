@@ -32,6 +32,11 @@ export class PostModel {
 
                 return response.json();
             })
+            .catch((error) => {
+                if (error.message === 'Failed to fetch') {
+                    EventBus.emit('postCard:backend-error', {title: 'Ошибка 500', description: 'Ошибка обращения к сервису. Попробуйте обновить страницу.'});
+                }
+            })
 
             .then((data) => {
                 EventBus.emit('postCard:got-info', data);
