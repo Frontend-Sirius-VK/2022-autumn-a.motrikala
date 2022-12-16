@@ -18,14 +18,6 @@ app.use(
     })
 )
 
-// app.get('/', async (req,res) => {
-//     res.sendFile(path.join(__dirname, '.', 'index.html'));
-// });
-
-// app.get('/api/post/:id', async (req,res) => {
-//     res.sendFile(path.join(__dirname, '.', 'index.html'));
-// });
-
 app.get('/login', (req,res) => {
     // TODO
 });

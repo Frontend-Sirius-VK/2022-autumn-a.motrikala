@@ -1,12 +1,14 @@
 import {Header} from '../components/header/header.js';
 import {onePostCard} from '../components/onePostCard/onePostCard.js';
 import EventBus from '../utils/eventBus.js';
+import template from '../components/error/error.handlebars';
 
 export class PostView {
     constructor() {
         this.container = null;
         this.header = null;
         this.post = null;
+        this.root = document.querySelector('#root');
 
         EventBus.on('onePostCard:got-info', this.update.bind(this));
         EventBus.on('onePostCard:not-found', this.errorUpdate.bind(this));
@@ -15,8 +17,6 @@ export class PostView {
     }
 
     render() {
-        const root = document.querySelector('#root');
-        root.innerHTML = '';
         this.container = document.querySelector('#page-container');
 
         const headerContainer = document.querySelector('#page-header');
@@ -26,7 +26,7 @@ export class PostView {
         this.post = new onePostCard(postContainer);
 
         this.container.append(headerContainer, postContainer);
-        root.append(this.container);
+        this.root.append(this.container);
 
         this.header.render(headerContainer);
     }
@@ -40,7 +40,6 @@ export class PostView {
     }
 
     renderError(data) {
-        const root = document.querySelector('#root');
         this.container = document.querySelector("#error");
 
         const errorStatus = data[0];
@@ -48,10 +47,9 @@ export class PostView {
 
         const context = {errorStatus, errorText};
 
-        const template = Handlebars.templates.error;
         const html = template(context);
 
-        root.append(this.container);
+        this.root.append(this.container);
         this.container.innerHTML += html;
     }
 

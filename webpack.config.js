@@ -4,8 +4,9 @@ const path = require('path');
 module.exports = {
     entry: './index.js',
     output: {
-        path: path.resolve(__dirname, './dist'),
+        path: path.resolve(__dirname, 'dist/'),
         filename: 'main.js',
+        publicPath: '/',
     },
     module: {
         rules: [
@@ -17,12 +18,13 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: './public/index.html'
+            template: '/public/index.html'
         })
     ],
     devServer: {
         proxy: {
             '/api': 'http://127.0.0.1:3050',
-        }
+        },
+        historyApiFallback: true
     }
 };
