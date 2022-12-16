@@ -3,7 +3,7 @@ export class PostCard {
         this.parent = parent;
     }
     render(post) {
-        const {author, subscribers, title, postUrl, contentData, imgUrl, published} = post;
+        const {id, author, subscribers, title, postUrl, contentData, imgUrl, published} = post;
         const cardsContainer = document.createElement('div');
         cardsContainer.classList.add('cards');
 
@@ -26,7 +26,7 @@ export class PostCard {
         headerText.classList.add('cards-title__content');
 
         headerText.textContent = title;
-        headerText.href = postUrl;
+        headerText.href = `/posts/${id}`;
 
         headerContainer.append(headerText);
 
@@ -38,6 +38,7 @@ export class PostCard {
 
         content.textContent = contentData;
         content.href = postUrl;
+        content.target = '_blank';
 
         mainTextContainer.append(content);
 

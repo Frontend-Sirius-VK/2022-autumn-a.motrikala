@@ -1,16 +1,16 @@
 import {Header} from '../components/header/header.js';
-import {PostCardRender} from '../components/postCardRender/postCardRender.js';
+import {postItem} from '../components/postItem/postItem.js';
 import EventBus from '../utils/eventBus.js';
 
-export class MainView {
+export class PostView {
     constructor() {
         this.container = null;
         this.header = null;
-        this.posts = null;
+        this.post = null;
         this.root = document.querySelector('#root');
 
-        EventBus.on('postCard:got-info', this.update.bind(this));
-        EventBus.on('postCard:backend-error', this.renderError.bind(this));
+        EventBus.on('postItem:got-info', this.update.bind(this));
+        EventBus.on('postItem:backend-error', this.renderError.bind(this));
     }
 
     render() {
@@ -23,26 +23,28 @@ export class MainView {
         this.header = new Header(headerContainer);
 
         const postContainer = document.createElement('div');
-        postContainer.classList.add('page-posts');
-        this.posts = new PostCardRender(postContainer);
+        postContainer.classList.add('post');
+        this.post = new postItem(postContainer);
 
         this.container.append(headerContainer, postContainer);
+        this.container.append(postContainer);
         this.root.append(this.container);
 
         this.header.render(headerContainer);
     }
 
     update(data = {}) {
-        if (!data || !Array.isArray(data) || data.length === 0) {
+        if (!data || !Object.keys(data)) {
             return;
         }
-        this.posts.update(data);
+        this.post.innerHTML = '';
+        this.post.update(data);
     }
 
     renderError(data) {
-        const card = document.querySelector('.posts');
+        const card = document.querySelector('.card');
         card.innerHTML = '';
-        this.posts.innerHTML = '';
+        this.post.innerHTML = '';
         this.container = document.createElement('div');
 
         const errorContainer = document.createElement('div');

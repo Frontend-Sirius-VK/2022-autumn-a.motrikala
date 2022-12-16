@@ -1,8 +1,16 @@
 import {MainController} from '../controllers/MainController.js'
+import {PostController} from '../controllers/PostController.js';
 
-const routes = {
-    '/': MainController,
-}
+const routes = [
+    {
+        path: `^/$`,
+        controller: MainController
+    },
+    {
+        path: `^/posts/(\\d+)`,
+        controller: PostController
+    },
+]
 
 export class Router {
     constructor() {
@@ -27,13 +35,33 @@ export class Router {
     }
 
     invokeController() {
-        const ControllerClass = routes[window.location.pathname];
+        let id;
+        const {pathname} = window.location;
+        const regexId = `^/posts/(\\d+)`;
+        if (pathname.match(regexId)) {
+            id = pathname.match(regexId)[1];
+        }
+
+        const result = routes.find((route) => {
+            const regex = new RegExp(route.path);
+            const matches = pathname.match(regex);
+            return Boolean(matches);
+        });
+
+        const ControllerClass = result.controller;
         const controller = new ControllerClass();
-        controller.process();
+
+        if (ControllerClass === PostController) {
+            controller.process(id);
+        }
+        else {
+            controller.process();
+        }
     }
 
     start() {
         document.addEventListener('click', this.onDocumentClick);
+        window.addEventListener('popstate', this.invokeController);
         this.invokeController();
     }
 
