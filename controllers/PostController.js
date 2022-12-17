@@ -8,7 +8,7 @@ export class PostController {
         view.render();
 
         const postCard = new postItemModel();
-        EventBus.emit('onePostCard:loading');
+        EventBus.emit('postItem:loading');
         postCard.fetchDataById(id);
     }
 }

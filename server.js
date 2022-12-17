@@ -11,47 +11,104 @@ const port = process.env.APP_PORT || 3050;
 app.use(morgan('dev'));
 app.use(express.static('.'));
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 app.use(
     bodyParser.urlencoded({
         extended: true
     })
-)
+);
 
-app.get('/login', (req,res) => {
-    // TODO
+app.get('/', async (req,res) => {
+    try {
+        res.sendFile(path.join(__dirname, '.', 'index.html'));
+    } catch (error) {
+        res.status(500).end();
+    }
+});
+
+app.get('/posts/:id', async (req,res) => {
+    try {
+        res.sendFile(path.join(__dirname, '.', 'index.html'));
+    } catch (error) {
+        res.status(500).end();
+    }
+});
+
+app.get('/posts', async (req,res) => {
+    try {
+        const result = await db.getPost();
+        if (!result) {
+            res.status(500).end();
+        }
+        if (result.code === 'ECONNREFUSED') {
+            res.status(500).end();
+        }
+        res.json(result);
+    } catch (error) {
+        res.status(500).end();
+    }
+});
+
+app.get('/getPostById/:id', async (req,res) => {
+    try{
+        const id = req.params.id;
+        const result = await db.getPostById(id);
+        if (!result) {
+            res.status(404).end();
+        }
+        if (result.name === 'error') {
+            res.status(404).end();
+        }
+        res.json(result);
+    } catch (error) {
+        res.status(500).end();
+    }
+    //TODO переделать на REST
+});
+
+app.post('/create/post', async (req, res) => {
+    try {
+        const {author, subscribers, title, postUrl, contentData, imgUrl, published} = req.body;
+        const result = await db.createPost(author, subscribers, title, postUrl, contentData, imgUrl, published);
+        if (!result) {
+            res.status(404).end();
+        }
+        if (result.name === 'error') {
+            res.status(404).end();
+        }
+        res.json(result);
+    } catch (error) {
+        res.status(500).end();
+    }
+});
+
+app.put('/update/post/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const {author, subscribers, title, postUrl, contentData, imgUrl, published} = req.body;
+        const result = await db.updatePost(author, subscribers, title, postUrl, contentData, imgUrl, published, id);
+        if (!result) {
+            res.status(404).end();
+        }
+        if (result.name === 'error') {
+            res.status(404).end();
+        }
+        res.json(result);
+    } catch (error) {
+        res.status(500).end();
+    }
+});
+
+app.delete('/delete/post/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const result = await db.deletePost(id);
+        res.end()
+    } catch (error) {
+        res.status(500).end();
+    }
 });
 
 app.listen(port, function() {
     console.log(`Server listening port ${port}`);
 });
-
-app.get('/api/posts', async (req,res) => {
-    const result = await db.getPost();
-    res.json(result);
-});
-
-app.get('/api/getPostById/:id', async (req,res) => {
-    const id = req.params.id;
-    const result = await db.getPostById(id);
-    res.json(result);
-});
-
-app.post('/api/create/post', async (req, res) => {
-    const { author, subscribers, title, postUrl, contentData, imgUrl, published } = req.body;
-    const id = await db.createPost(author, subscribers, title, postUrl, contentData, imgUrl, published);
-    res.json({id})
-})
-
-app.put('/api/update/post/:id', async (req, res) => {
-    const { id, author, subscribers, title, postUrl, contentData, imgUrl, published } = req.body;
-    const result = await db.updatePost(id, author, subscribers, title, postUrl, contentData, imgUrl, published);
-    res.json({result});
-})
-
-app.delete('/api/delete/post/:id', async (req, res) => {
-    const { id } = req.body;
-    const result = await db.deletePost(id);
-    res.json({result});
-})
-

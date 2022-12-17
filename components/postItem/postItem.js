@@ -7,7 +7,7 @@ export class postItem {
         this.parent = parent;
         this.container = document.querySelector("#card");
 
-        EventBus.on('onePostCard:loading', this.update.bind(this));
+        EventBus.on('postItem:loading', this.update.bind(this));
     }
     render(data) {
         if (!data) {
