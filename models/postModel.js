@@ -16,25 +16,28 @@ export class PostModel {
                 const {status} = response;
 
                 if (status === 404) {
-                    EventBus.emit('postCard:not-found', ['Ошибка 404', 'Страница, которую вы запрашиваете, не существует. Возможно был введен неверный адрес.']);
+                    EventBus.emit('postCard:backend-error', {title: 'Ошибка 404', description: 'Страница, которую вы запрашиваете, не существует. Возможно был введен неверный адрес.'});
                     return;
                 }
 
                 if (status === 400) {
-                    EventBus.emit('postCard:bad-request', ['Ошибка 400', 'Вы ввели некорректный запрос, проверьте данные.']);
+                    EventBus.emit('postCard:backend-error', {title: 'Ошибка 400', description: 'Вы ввели некорректный запрос, проверьте данные.'});
                     return;
                 }
 
                 if (status === 500) {
-                    EventBus.emit('postCard:server-error', ['Ошибка 500', 'Ошибка обращения к сервису. Попробуйте обновить страницу.']);
+                    EventBus.emit('postCard:backend-error', {title: 'Ошибка 500', description: 'Ошибка обращения к сервису. Попробуйте обновить страницу.'});
                     return;
                 }
 
                 return response.json();
             })
+            .catch((error) => {
+                EventBus.emit('postCard:backend-error', {title: 'Ошибка 500', description: 'Ошибка обращения к сервису. Попробуйте обновить страницу.'});
+            })
 
             .then((data) => {
                 EventBus.emit('postCard:got-info', data);
-            });
+            })
     }
 }

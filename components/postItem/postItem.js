@@ -1,8 +1,8 @@
 import EventBus from '../../utils/eventBus.js';
 import {Loader} from '../loader/loader.js';
-import template from './onePost.handlebars';
+import template from './postItem.handlebars';
 
-export class onePostCard {
+export class postItem {
     constructor(parent) {
         this.parent = parent;
         this.container = document.querySelector("#card");

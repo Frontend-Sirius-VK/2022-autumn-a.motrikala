@@ -3,7 +3,7 @@
 @import './components/postCard/posts.css';
 @import './components/loader/loader.css';
 @import './components/error/error.css';
-@import './components/onePostCard/onePost.css';
+@import './components/postItem/postItem.css';
 
 
 body {

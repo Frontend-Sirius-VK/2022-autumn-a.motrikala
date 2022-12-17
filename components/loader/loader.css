@@ -2,11 +2,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    vertical-align: middle;
     padding: 20px;
+    height: 600px;
 }
 
 .loader {
-    color: rgba(192, 192, 192, .5);
+    color: var(--loager-color);
     font-size: 45px;
     text-indent: -9999em;
     overflow: hidden;

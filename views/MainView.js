@@ -11,14 +11,12 @@ export class MainView {
         this.root = document.querySelector('#root');
 
         EventBus.on('postCard:got-info', this.update.bind(this));
-        EventBus.on('postCard:not-found', this.errorUpdate.bind(this));
-        EventBus.on('postCard:bad-request', this.errorUpdate.bind(this));
-        EventBus.on('postCard:server-error', this.errorUpdate.bind(this));
+        EventBus.on('postCard:backend-error', this.renderError.bind(this));
     }
 
     render() {
         this.container = document.querySelector('#page-container');
-
+        // this.root.innerHTML = '';
         const headerContainer = document.querySelector('#page-header');
         this.header = new Header(headerContainer);
 
@@ -39,10 +37,13 @@ export class MainView {
     }
 
     renderError(data) {
-        this.container = document.querySelector("#error");
+        const card = document.querySelector('.posts');
+        card.innerHTML = '';
+        this.posts.innerHTML = '';
 
-        const errorStatus = data[0];
-        const errorText = data[1];
+        this.container = document.querySelector("#error");
+        const errorStatus = data.title;
+        const errorText = data.description;
 
         const context = {errorStatus, errorText};
         const html = template(context);
@@ -50,12 +51,5 @@ export class MainView {
         this.root.append(this.container);
 
         this.container.innerHTML += html;
-    }
-
-    errorUpdate(data) {
-        if (this.posts) {
-            this.posts.innerHTML = '';
-        }
-        this.renderError(data);
     }
 }

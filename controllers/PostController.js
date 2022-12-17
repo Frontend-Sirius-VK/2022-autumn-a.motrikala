@@ -1,5 +1,5 @@
 import {PostView} from '../views/PostView.js';
-import {onePostModel} from '../models/onePostModel.js';
+import {postItemModel} from '../models/postItemModel.js';
 import EventBus from '../utils/eventBus.js';
 
 export class PostController {
@@ -7,7 +7,7 @@ export class PostController {
         const view = new PostView();
         view.render();
 
-        const postCard = new onePostModel();
+        const postCard = new postItemModel();
         EventBus.emit('onePostCard:loading');
         postCard.fetchDataById(id);
     }
