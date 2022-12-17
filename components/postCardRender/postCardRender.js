@@ -5,7 +5,8 @@ import {Loader} from '../loader/loader.js';
 export class PostCardRender {
     constructor(parent) {
         this.parent = parent;
-        this.container = document.querySelector("#posts");
+        this.container = document.createElement('div');
+        this.container.classList.add('posts')
 
         EventBus.on('postCard:loading', this.render.bind(this));
     }

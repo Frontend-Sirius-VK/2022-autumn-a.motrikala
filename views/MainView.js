@@ -42,8 +42,9 @@ export class MainView {
     }
 
     renderError(data) {
-        const card = document.querySelector('#posts');
+        const card = document.querySelector('.posts');
         card.innerHTML = '';
+        this.posts.innerHTML = '';
 
         this.container = document.querySelector("#error");
         const errorStatus = data.title;

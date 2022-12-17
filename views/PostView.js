@@ -42,8 +42,9 @@ export class PostView {
     }
 
     renderError(data) {
-        const card = document.querySelector('#card');
+        const card = document.querySelector('.card');
         card.innerHTML = '';
+        this.post.innerHTML = '';
 
         this.container = document.querySelector("#error");
         const errorStatus = data.title;

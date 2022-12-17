@@ -5,7 +5,7 @@ import template from './postItem.handlebars';
 export class postItem {
     constructor(parent) {
         this.parent = parent;
-        this.container = document.querySelector("#card");
+        this.container = document.createElement('div');
 
         EventBus.on('postItem:loading', this.update.bind(this));
     }
