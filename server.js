@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 
 const app = express();
 const db = require('./queries');
-const port = process.env.APP_PORT || 3050;
+const port = process.env.APP_PORT || 3030;
 
 app.use(morgan('dev'));
 app.use(express.static('.'));
@@ -52,8 +52,8 @@ app.get('/api/getPostById/:id', async (req,res) => {
 
 app.post('/api/create/post', async (req, res) => {
     try {
-        const {author, subscribers, title, postUrl, contentData, imgUrl, published} = req.body;
-        const result = await db.createPost(author, subscribers, title, postUrl, contentData, imgUrl, published);
+        const {author, subscribers, title, link, content, img, published} = req.body;
+        const result = await db.createPost(author, subscribers, title, link, content, img, published);
         if (!result) {
             res.status(404).end();
         }
@@ -69,8 +69,8 @@ app.post('/api/create/post', async (req, res) => {
 app.put('/api/update/post/:id', async (req, res) => {
     try {
         const id = req.params.id;
-        const {author, subscribers, title, postUrl, contentData, imgUrl, published} = req.body;
-        const result = await db.updatePost(author, subscribers, title, postUrl, contentData, imgUrl, published, id);
+        const {author, subscribers, title, link, content, img, published} = req.body;
+        const result = await db.updatePost(author, subscribers, title, link, content, img, published, id);
         if (!result) {
             res.status(404).end();
         }

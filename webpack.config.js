@@ -23,7 +23,7 @@ module.exports = {
     ],
     devServer: {
         proxy: {
-            '/api': 'http://127.0.0.1:3050',
+            '/api': 'http://127.0.0.1:3030',
         },
         historyApiFallback: true
     }

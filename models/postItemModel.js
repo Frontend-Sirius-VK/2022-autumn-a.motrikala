@@ -1,12 +1,12 @@
 import EventBus from '../utils/eventBus.js';
 export class postItemModel {
-    constructor(author = null, subscribers = null, title = null, postUrl = null, contentData = null, imgUrl = null, published = null) {
+    constructor(author = null, subscribers = null, title = null, link = null, content = null, img = null, published = null) {
         this.author = author;
         this.subscribers = subscribers;
         this.title = title;
-        this.postUrl = postUrl;
-        this.contentData = contentData;
-        this.imgUrl = imgUrl;
+        this.link = link;
+        this.content = content;
+        this.img = img;
         this.published = published;
     }
 

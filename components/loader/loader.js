@@ -8,7 +8,6 @@ export class Loader {
     render() {
         const context = '';
         const html = template(context);
-
         this.parent.innerHTML += html;
     }
 }

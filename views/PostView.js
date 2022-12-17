@@ -2,7 +2,6 @@ import {Header} from '../components/header/header.js';
 import {postItem} from '../components/postItem/postItem.js';
 import EventBus from '../utils/eventBus.js';
 import template from '../components/error/error.handlebars';
-import {PostCardRender} from "../components/postCardRender/postCardRender";
 
 export class PostView {
     constructor() {
@@ -25,11 +24,10 @@ export class PostView {
         this.header = new Header(headerContainer);
 
         const postContainer = document.createElement('div');
-        postContainer.classList.add('post');
+        postContainer.classList.add('page-posts');
         this.post = new postItem(postContainer);
 
         this.container.append(headerContainer, postContainer);
-        this.container.append(postContainer);
         this.root.append(this.container);
 
         this.header.render(headerContainer);

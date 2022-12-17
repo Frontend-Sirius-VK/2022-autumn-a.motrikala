@@ -18,8 +18,8 @@ export class postItem {
             return;
         }
 
-        const {author, title, postUrl, contentData, imgUrl, published} = data;
-        const context = {author, title, postUrl, contentData, imgUrl, published};
+        const {author, subscribers, title, link, content, img, published} = data;
+        const context = {author, subscribers, title, link, content, img, published};
 
         const html = template(context);
         this.parent.innerHTML += html;
