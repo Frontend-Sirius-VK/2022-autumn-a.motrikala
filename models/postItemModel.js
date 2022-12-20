@@ -11,7 +11,7 @@ export class postItemModel {
     }
 
     fetchDataById(id) {
-        fetch(`/api/getPostById/${id}`)
+        fetch(`/api/posts/${id}`)
             .then((response) => {
                 const {status} = response;
 

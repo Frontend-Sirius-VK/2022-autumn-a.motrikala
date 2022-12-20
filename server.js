@@ -33,7 +33,7 @@ app.get('/api/posts', async (req,res) => {
     }
 });
 
-app.get('/api/getPostById/:id', async (req,res) => {
+app.get('/api/posts/:id', async (req,res) => {
     try{
         const id = req.params.id;
         const result = await db.getPostById(id);
@@ -47,10 +47,9 @@ app.get('/api/getPostById/:id', async (req,res) => {
     } catch (error) {
         res.status(500).end();
     }
-    //TODO переделать на REST
 });
 
-app.post('/api/create/post', async (req, res) => {
+app.post('/api/posts', async (req, res) => {
     try {
         const {author, subscribers, title, link, content, img, published} = req.body;
         const result = await db.createPost(author, subscribers, title, link, content, img, published);
@@ -66,7 +65,7 @@ app.post('/api/create/post', async (req, res) => {
     }
 });
 
-app.put('/api/update/post/:id', async (req, res) => {
+app.put('/api/posts/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const {author, subscribers, title, link, content, img, published} = req.body;
@@ -83,7 +82,7 @@ app.put('/api/update/post/:id', async (req, res) => {
     }
 });
 
-app.delete('/api/delete/post/:id', async (req, res) => {
+app.delete('/api/posts/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const result = await db.deletePost(id);

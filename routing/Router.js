@@ -36,7 +36,7 @@ export class Router {
     invokeController() {
         let id;
         const {pathname} = window.location;
-        const regexId = `^/posts/(\\d+)`;
+        const regexId = `/posts/(\\d+)`;
         if (pathname.match(regexId)) {
             id = pathname.match(regexId)[1];
         }
