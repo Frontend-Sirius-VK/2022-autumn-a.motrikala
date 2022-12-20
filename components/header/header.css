@@ -42,6 +42,12 @@
 
 .header-controls-button__img {
     height: 20px;
+    width: 20px;
+}
+
+.header-controls-button:hover {
+    --content-text-color-hover: rgb(250, 180, 2);
+    --button-color: rgb(250, 180, 2);
 }
 
 .header-controls-button__content {
@@ -70,6 +76,7 @@
 
     .header-controls-button__img {
         height: 1.5em;
+        width: 1.5em;
         padding-left: 5px;
     }
 

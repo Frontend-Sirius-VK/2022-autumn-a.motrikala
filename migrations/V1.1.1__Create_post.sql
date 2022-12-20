@@ -4,7 +4,6 @@ create table post
     author text not null,
     subscribers bigint not null,
     title text not null,
-    link text not null,
     content text not null,
     img text not null,
     published text not null

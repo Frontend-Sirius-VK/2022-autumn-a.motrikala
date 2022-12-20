@@ -13,7 +13,8 @@ module.exports = {
             { test: /\.css$/, use: ['style-loader', 'css-loader'] },
             { test: /\.handlebars$/, loader: 'handlebars-loader' },
             { test: /\.jpeg$/, type: 'asset/resource' },
-            { test: /\.png$/, type: 'asset/resource' }
+            { test: /\.png$/, type: 'asset/resource' },
+            { test: /\.svg$/, type: 'asset/resource' }
         ]
     },
     plugins: [

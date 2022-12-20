@@ -27,12 +27,12 @@ async function getPostById(id) {
         return error;
     }
 }
-async function createPost(author, subscribers, title, link, content, img, published) {
+async function createPost(author, subscribers, title, content, img, published) {
     try {
         const result = await pool.query(
-            'INSERT INTO post (author, subscribers, title, link, content, img, published) \ ' +
-            'VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id',
-            [author, subscribers, title, link, content, img, published]
+            'INSERT INTO post (author, subscribers, title, content, img, published) \ ' +
+            'VALUES ($1, $2, $3, $4, $5, $6) RETURNING id',
+            [author, subscribers, title, content, img, published]
         );
         return result.rows[0]?.id;
     } catch (error) {
@@ -40,12 +40,12 @@ async function createPost(author, subscribers, title, link, content, img, publis
     }
 }
 
-async function updatePost(author, subscribers, title, link, content, img, published, id) {
+async function updatePost(author, subscribers, title, content, img, published, id) {
     try {
         const result = await pool.query(
             'UPDATE post SET author = $1, subscribers = $2, title = $3, \
-                link = $4, content = $5, img = $6, published = $7 WHERE id = $8',
-            [author, subscribers, title, link, content, img, published, id]
+                content = $4, img = $5, published = $6 WHERE id = $8',
+            [author, subscribers, title, content, img, published, id]
         );
         return result.rows;
     } catch (error) {

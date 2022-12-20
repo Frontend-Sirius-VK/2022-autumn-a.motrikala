@@ -47,6 +47,10 @@
     color: var(--content-text-color);
 }
 
+.cards-title__content:hover {
+    color: var( --content-text-color-hover-orange);
+}
+
 .cards-text{
     padding: 2px 18px 0;
 }

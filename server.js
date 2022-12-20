@@ -51,8 +51,8 @@ app.get('/api/posts/:id', async (req,res) => {
 
 app.post('/api/posts', async (req, res) => {
     try {
-        const {author, subscribers, title, link, content, img, published} = req.body;
-        const result = await db.createPost(author, subscribers, title, link, content, img, published);
+        const {author, subscribers, title, content, img, published} = req.body;
+        const result = await db.createPost(author, subscribers, title, content, img, published);
         if (!result) {
             res.status(404).end();
         }
@@ -68,8 +68,8 @@ app.post('/api/posts', async (req, res) => {
 app.put('/api/posts/:id', async (req, res) => {
     try {
         const id = req.params.id;
-        const {author, subscribers, title, link, content, img, published} = req.body;
-        const result = await db.updatePost(author, subscribers, title, link, content, img, published, id);
+        const {author, subscribers, title, content, img, published} = req.body;
+        const result = await db.updatePost(author, subscribers, title, content, img, published, id);
         if (!result) {
             res.status(404).end();
         }
