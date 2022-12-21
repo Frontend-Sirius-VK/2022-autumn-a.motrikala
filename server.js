@@ -6,7 +6,7 @@ const bodyParser = require('body-parser')
 
 const app = express();
 const db = require('./queries');
-const port = process.env.APP_PORT || 3050;
+const port = process.env.APP_PORT || 3030;
 
 app.use(morgan('dev'));
 app.use(express.static('.'));
@@ -18,23 +18,7 @@ app.use(
     })
 );
 
-app.get('/', async (req,res) => {
-    try {
-        res.sendFile(path.join(__dirname, '.', 'index.html'));
-    } catch (error) {
-        res.status(500).end();
-    }
-});
-
-app.get('/posts/:id', async (req,res) => {
-    try {
-        res.sendFile(path.join(__dirname, '.', 'index.html'));
-    } catch (error) {
-        res.status(500).end();
-    }
-});
-
-app.get('/posts', async (req,res) => {
+app.get('/api/posts', async (req,res) => {
     try {
         const result = await db.getPost();
         if (!result) {
@@ -49,7 +33,7 @@ app.get('/posts', async (req,res) => {
     }
 });
 
-app.get('/getPostById/:id', async (req,res) => {
+app.get('/api/posts/:id', async (req,res) => {
     try{
         const id = req.params.id;
         const result = await db.getPostById(id);
@@ -63,13 +47,12 @@ app.get('/getPostById/:id', async (req,res) => {
     } catch (error) {
         res.status(500).end();
     }
-    //TODO переделать на REST
 });
 
-app.post('/create/post', async (req, res) => {
+app.post('/api/posts', async (req, res) => {
     try {
-        const {author, subscribers, title, postUrl, contentData, imgUrl, published} = req.body;
-        const result = await db.createPost(author, subscribers, title, postUrl, contentData, imgUrl, published);
+        const {author, subscribers, title, content, img, published} = req.body;
+        const result = await db.createPost(author, subscribers, title, content, img, published);
         if (!result) {
             res.status(404).end();
         }
@@ -82,11 +65,11 @@ app.post('/create/post', async (req, res) => {
     }
 });
 
-app.put('/update/post/:id', async (req, res) => {
+app.put('/api/posts/:id', async (req, res) => {
     try {
         const id = req.params.id;
-        const {author, subscribers, title, postUrl, contentData, imgUrl, published} = req.body;
-        const result = await db.updatePost(author, subscribers, title, postUrl, contentData, imgUrl, published, id);
+        const {author, subscribers, title, content, img, published} = req.body;
+        const result = await db.updatePost(author, subscribers, title, content, img, published, id);
         if (!result) {
             res.status(404).end();
         }
@@ -99,7 +82,7 @@ app.put('/update/post/:id', async (req, res) => {
     }
 });
 
-app.delete('/delete/post/:id', async (req, res) => {
+app.delete('/api/posts/:id', async (req, res) => {
     try {
         const id = req.params.id;
         const result = await db.deletePost(id);
@@ -112,4 +95,3 @@ app.delete('/delete/post/:id', async (req, res) => {
 app.listen(port, function() {
     console.log(`Server listening port ${port}`);
 });
-

@@ -21,7 +21,7 @@ class EventBus {
         }
         this.listeners[eventName].forEach(callback =>{
             callback(data);
-        })
+        });
     }
 }
 

@@ -47,6 +47,10 @@
     color: var(--content-text-color);
 }
 
+.cards-title__content:hover {
+    color: var( --content-text-color-hover-orange);
+}
+
 .cards-text{
     padding: 2px 18px 0;
 }
@@ -85,22 +89,10 @@
 
     .cards-info {
         margin: 1.5em 0 1em;
-        padding: 0 2em;
-    }
-
-    .cards-title {
-        padding: 0 2em;
-    }
-
-    .cards-text {
-        padding: 0 2em;
-    }
-
-    .cards-picture {
-        padding: 0 2em;
     }
 
     .cards-published {
-        padding: 1.5em 2em;
+        padding-left: 18px;
+        padding-bottom: 1.5em;
     }
 }

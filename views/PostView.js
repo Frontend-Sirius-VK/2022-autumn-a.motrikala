@@ -1,13 +1,14 @@
 import {Header} from '../components/header/header.js';
 import {postItem} from '../components/postItem/postItem.js';
 import EventBus from '../utils/eventBus.js';
+import template from '../components/error/error.handlebars';
 
 export class PostView {
     constructor() {
+        this.root = document.querySelector('#root');
         this.container = null;
         this.header = null;
         this.post = null;
-        this.root = document.querySelector('#root');
 
         EventBus.on('postItem:got-info', this.update.bind(this));
         EventBus.on('postItem:backend-error', this.renderError.bind(this));
@@ -23,11 +24,10 @@ export class PostView {
         this.header = new Header(headerContainer);
 
         const postContainer = document.createElement('div');
-        postContainer.classList.add('post');
+        postContainer.classList.add('page-posts');
         this.post = new postItem(postContainer);
 
         this.container.append(headerContainer, postContainer);
-        this.container.append(postContainer);
         this.root.append(this.container);
 
         this.header.render(headerContainer);
@@ -45,22 +45,16 @@ export class PostView {
         const card = document.querySelector('.card');
         card.innerHTML = '';
         this.post.innerHTML = '';
-        this.container = document.createElement('div');
 
-        const errorContainer = document.createElement('div');
-        errorContainer.classList.add('error-container__div');
+        this.container = document.querySelector("#error");
+        const errorStatus = data.title;
+        const errorText = data.description;
 
-        const errorStatus = document.createElement('p');
-        errorStatus.classList.add('error-container-error-status__p');
-        errorStatus.textContent = data.title;
+        const context = {errorStatus, errorText};
+        const html = template(context);
 
-        const errorText = document.createElement('p');
-        errorText.classList.add('error-container-error-text__p');
-        errorText.textContent = data.description;
-
-        errorContainer.append(errorStatus, errorText);
-
-        this.container.append(errorContainer);
         this.root.append(this.container);
+
+        this.container.innerHTML += html;
     }
 }

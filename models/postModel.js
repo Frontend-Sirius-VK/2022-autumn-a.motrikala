@@ -1,17 +1,16 @@
 import EventBus from '../utils/eventBus.js';
 export class PostModel {
-    constructor(author = null, subscribers = null, title = null, postUrl = null, contentData = null, imgUrl = null, published = null){
+    constructor(author = null, subscribers = null, title = null, content = null, img = null, published = null) {
         this.author = author;
         this.subscribers = subscribers;
         this.title = title;
-        this.postUrl = postUrl;
-        this.contentData = contentData;
-        this.imgUrl = imgUrl;
+        this.content = content;
+        this.img = img;
         this.published = published;
     }
 
     fetchData() {
-        fetch('/posts')
+        fetch('/api/posts')
             .then((response) => {
                 const {status} = response;
 
@@ -33,13 +32,11 @@ export class PostModel {
                 return response.json();
             })
             .catch((error) => {
-                if (error.message === 'Failed to fetch') {
-                    EventBus.emit('postCard:backend-error', {title: 'Ошибка 500', description: 'Ошибка обращения к сервису. Попробуйте обновить страницу.'});
-                }
+                EventBus.emit('postCard:backend-error', {title: 'Ошибка 500', description: 'Ошибка обращения к сервису. Попробуйте обновить страницу.'});
             })
 
             .then((data) => {
                 EventBus.emit('postCard:got-info', data);
-        })
+            })
     }
 }
