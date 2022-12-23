@@ -15,7 +15,7 @@
 }
 
 .card-info__author {
-    font-size: 0.9em;
+    font-size: 1.2em;
     font-weight: bold;
 }
 
@@ -91,6 +91,6 @@
     }
 
     .card-text__content {
-        font-size: 1.3em;
+        font-size: 2em;
     }
 }
