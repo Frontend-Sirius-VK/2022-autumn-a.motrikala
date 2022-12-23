@@ -90,6 +90,7 @@
 @media (max-width: 1024px) {
     .cards {
         width: 100vw;
+        margin-bottom: 1em;
     }
 
     .cards-info {

@@ -10,6 +10,10 @@
     width: 50vw;
 }
 
+.card-info {
+    margin-bottom: 2em;
+}
+
 .card-info__author {
     font-size: 0.9em;
     font-weight: bold;
@@ -67,7 +71,7 @@
     }
 
     .card-info {
-        padding: 1.5em 2em;
+        padding: 1.5em 2em 0 2em;
     }
 
     .card-title {
@@ -84,5 +88,9 @@
 
     .card-published {
         padding: 0 2em;
+    }
+
+    .card-text__content {
+        font-size: 1.3em;
     }
 }
